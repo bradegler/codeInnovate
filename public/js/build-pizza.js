@@ -11,10 +11,10 @@ var card = `
     </div>
   <div class="card-footer ">
       <div class="row buttonRow">
-        <a href="#" class="btn btn1 text-white col-md-2 btn2 active" id ="None">None</a>
-        <a href="#" class="btn btn1 text-white col-md-2 btn2 active" id="Light">Light</a>
-        <a href="#" class="btn btn1 text-white col-md-3 btn2 active" id="Normal">Normal</a>
-        <a href="#" class="btn btn1 text-white col-md-2 btn2 active" id="Extra">Extra</a>
+        <a href="#" class="btn btn1 text-white col-md-2 btn2 " id ="None">None</a>
+        <a href="#" class="btn btn1 text-white col-md-2 btn2 " id="Light">Light</a>
+        <a href="#" class="btn btn1 text-white col-md-3 btn2 " id="Normal">Normal</a>
+        <a href="#" class="btn btn1 text-white col-md-2 btn2 " id="Extra">Extra</a>
       </div>
       
   </div >

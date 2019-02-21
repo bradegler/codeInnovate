@@ -50,6 +50,16 @@ footer {
   margin: 3px;
 }
 
+btn1:active {
+  background-color: #666;
+  color: white;
+}
+
+btn:active {
+  background-color: #666;
+  color: white;
+}
+
 .buttonRow {
   padding-left: 25px;
 }
