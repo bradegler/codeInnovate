@@ -50,14 +50,13 @@ footer {
   margin: 3px;
 }
 
-btn1:active {
+a:active {
   background-color: #666;
-  color: white;
+  color: #666;
 }
-
-btn:active {
+a:visited {
   background-color: #666;
-  color: white;
+  color: #666;
 }
 
 .buttonRow {
