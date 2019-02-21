@@ -1,0 +1,54 @@
+/*!
+ * Start Bootstrap - Small Business (https://startbootstrap.com/template-overviews/small-business)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-small-business/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+nav {
+  background-color: rgb(151, 33, 33);
+}
+
+a {
+  color: white;
+}
+
+a:link {
+  color: white;
+}
+
+a:hover {
+  color: rgb(190, 188, 188);
+}
+
+nav-link {
+  color: white;
+}
+
+footer {
+  background-color: rgb(116, 23, 23);
+}
+
+.btn1 {
+  background-color: rgb(116, 23, 23);
+}
+
+.mamaMaggyTitle {
+  font-size: 25px;
+}
+
+.mamaMaggyMenuItems {
+  font-size: 18px;
+}
+
+.imagePanel {
+  height: 180px;
+  width: 1150px;
+}
+
+.cardPadding {
+  padding: 0px;
+  margin: 0px;
+}
