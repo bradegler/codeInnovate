@@ -1,0 +1,16 @@
+uiVersion: v1
+kind: Service
+metadata:
+  name: ingredient-ui-svc
+  labels:
+    app: ingredient-ui
+    commit: "1"
+spec:
+  ports:
+  - port: 30001
+    targetPort: 3000
+  selector:
+    app: ingredient-ui
+    commit: "1"
+  type: LoadBalancer
+---
