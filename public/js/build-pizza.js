@@ -13,7 +13,7 @@ var card = `
       <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="$$ID$$">Amount of Toppings
   <span class="caret"></span></button>
-  <ul class="dropdown-menu" id="cb-$$ID$$">
+  <ul class="dropdown-menu dropDownTextColor" id="cb-$$ID$$">
     <li><a href="#">None</a></li>
     <li><a href="#">Light</a></li>
     <li><a href="#">Normal</a></li>
@@ -92,16 +92,29 @@ $(document).ready(function() {
   }, 1000);
 
   var submitAction = $("#submit");
+
+  var pID = Math.floor(Math.random() * (2 - 50)) + 2;
+  var PizzaID = "PIZZA-" + pID;
+
   submitAction.click(() => {
-    var pizzaId = "PIZZA-01";
     ingreds.forEach(name => {
+      var calRan = Math.floor(Math.random() * (100 - 800)) + 100;
+
+      var orignArr = [
+        "Georges Mill Farm Artisan Cheese",
+        "Virginia Farm, Inc",
+        "Potomac Vegetable Farms",
+        "Reston Farm Market"
+      ];
       var b = $("#" + name);
       var amount = b.val(); //$("#cb-" + b.attr("id"));
       if (amount !== "") {
         var data = {
           ingre_name: b.attr("id").replace("_", " "),
+          origin: orignArr[Math.floor(Math.random() * orignArr.length)],
           total_quantity: amount,
-          pizza_id: pizzaId
+          total_calories: calRan,
+          pizza_id: PizzaID
         };
         console.log(data);
 
@@ -113,6 +126,7 @@ $(document).ready(function() {
         }).done(result => {});
       }
     });
-    window.location = "http://129.213.143.54:30000/api/pizza/" + pizzaId;
+    //window.location = "http://129.213.143.54:30000/api/pizza/" + PizzaID;
+    window.location = "pizzapie.html" + "#" + PizzaID;
   });
 });

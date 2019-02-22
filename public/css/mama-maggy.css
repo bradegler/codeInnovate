@@ -50,13 +50,14 @@ footer {
   margin: 3px;
 }
 
-a:active {
-  background-color: #666;
-  color: #666;
+.submitText {
+  color: white;
+  font-size: 20px;
 }
-a:visited {
-  background-color: #666;
-  color: #666;
+
+.dropDownTextColor {
+  color: rgb(0, 0, 0);
+  background-color: rgba(163, 160, 160, 0.815);
 }
 
 .buttonRow {
