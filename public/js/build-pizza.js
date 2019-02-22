@@ -127,7 +127,10 @@ $(document).ready(function() {
       }
     });
     //window.location = "http://129.213.143.54:30000/api/pizza/" + PizzaID;
-    window.location = "pizzapie.html" + "#" + PizzaID;
+    setTimeout(() => {
+      window.location = "pizzapie.html" + "#" + PizzaID;
+    }, 2000);
+
     //window.location = "pizzapie.html" + "#" + "PIZZA-01";
   });
 });
