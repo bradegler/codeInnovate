@@ -1,44 +1,93 @@
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
     <title>Mama Maggy</title>
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/mama-maggy.css" rel="stylesheet" />
     <script
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
+
+    <!-- Bootstrap core CSS -->
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
+    />
+    <link href="bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mama-maggy.css" rel="stylesheet" />
+
     <script type="text/javascript">
-      var pizzaID = window.location.hash.substring(1);
-      console.log(pizzaID);
+      //var pizzaID = window.location.hash.substring(1);
+      var pizzaID = "PIZZA-01";
+
       google.charts.load("current", { packages: ["corechart"] });
       google.charts.setOnLoadCallback(drawChart);
+
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ["Task", "Hours per Day"],
-          ["Work", 11],
-          ["Eat", 2],
-          ["Commute", 2],
-          ["Watch TV", 2],
-          ["Sleep", 7]
-        ]);
+        var xmlhttp = new XMLHttpRequest();
+        var url =
+          "http://129.213.143.54:30000/api/database/modelpizza/" + pizzaID;
 
-        var options = {
-          title: "Your Daily Activities",
-          is3D: true
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var myArr = JSON.parse(this.responseText);
+            var data1 = [];
+            var data2 = [];
+            data1[0] = ["INGRE_NAME", "TOTAL_CALORIES"];
+
+            for (var i = 1; i < myArr.length; i++) {
+              var obj = myArr[i];
+              data1[i] = [obj.INGRE_NAME, parseInt(obj.TOTAL_CALORIES)];
+            }
+
+            for (var i = 0; i < myArr.length; i++) {
+              var obj = myArr[i];
+              data2[i] = [
+                obj.INGRE_NAME,
+                obj.ORIGIN,
+                obj.TOTAL_QUANTITY,
+                obj.TOTAL_CALORIES,
+                obj.PIZZA_ID
+              ];
+            }
+
+            var data = google.visualization.arrayToDataTable(data1);
+
+            var options = {
+              title: "Your Customize Pizza Data",
+              is3D: true
+            };
+
+            var chart = new google.visualization.PieChart(
+              document.getElementById("piechart_3d")
+            );
+            chart.draw(data, options);
+
+            console.log(data2);
+
+            const dataTable = $("#realtime").DataTable({
+              bJQueryUI: true,
+              bAutoWidth: true,
+              bDestroy: true,
+              bPaginate: true,
+              bFilter: true,
+              bInfo: true,
+              data: data2,
+              columns: [
+                { title: "Ingredient Name" },
+                { title: "Origin" },
+                { title: "Total Quantity" },
+                { title: "Total CALORIES" },
+                { title: "PIZZA ID" }
+              ]
+            });
+          }
         };
-
-        var chart = new google.visualization.PieChart(
-          document.getElementById("piechart_3d")
-        );
-        chart.draw(data, options);
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
       }
     </script>
   </head>
@@ -89,20 +138,16 @@
       </div>
     </nav>
     <div class="container">
-      <div class="card border-light col-md-6  my-5 ">
+      <div class="card border-light   my-5 ">
         <div class="card-title">
           <h3>
             <p>
-              Yeaaah You Have Completed The Customization Of Your Pizza
+              Yeaaah!! You Have Completed The Customization Of Your Pizza
             </p>
           </h3>
         </div>
-        <div class="card-footer">
-          <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <p></p>
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+        <table id="realtime" class="display" width="100%"></table>
       </div>
     </div>
 
@@ -116,7 +161,7 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="bootstrap/jquery/jquery.min.js"></script>
+
     <script src="bootstrap/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/build-pizza.js"></script>
   </body>

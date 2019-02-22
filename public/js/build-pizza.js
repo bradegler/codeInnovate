@@ -93,12 +93,12 @@ $(document).ready(function() {
 
   var submitAction = $("#submit");
 
-  var pID = Math.floor(Math.random() * (2 - 50)) + 2;
+  var pID = Math.floor(Math.random() * (50 - 2)) + 1;
   var PizzaID = "PIZZA-" + pID;
 
   submitAction.click(() => {
     ingreds.forEach(name => {
-      var calRan = Math.floor(Math.random() * (100 - 800)) + 100;
+      var calRan = Math.floor(Math.random() * (800 - 100)) + 50;
 
       var orignArr = [
         "Georges Mill Farm Artisan Cheese",
@@ -111,9 +111,9 @@ $(document).ready(function() {
       if (amount !== "") {
         var data = {
           ingre_name: b.attr("id").replace("_", " "),
-          origin: orignArr[Math.floor(Math.random() * orignArr.length)],
+          origin: "Virginia Farm, Inc",
           total_quantity: amount,
-          total_calories: calRan,
+          total_calories: calRan.toString(),
           pizza_id: PizzaID
         };
         console.log(data);
@@ -128,5 +128,6 @@ $(document).ready(function() {
     });
     //window.location = "http://129.213.143.54:30000/api/pizza/" + PizzaID;
     window.location = "pizzapie.html" + "#" + PizzaID;
+    //window.location = "pizzapie.html" + "#" + "PIZZA-01";
   });
 });
